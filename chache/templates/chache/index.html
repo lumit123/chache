@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>海迈克 | 动力科技 </title>
+
+    <!-- Bootstrap -->
+    <link href="/static/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="/static/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="/static/vendors/nprogress/nprogress.css" rel="stylesheet">
+	
+    <!-- bootstrap-progressbar -->
+    <link href="/static/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="/static/build/css/custom.css" rel="stylesheet">
+
+    <!-- Datatables -->
+    <link href="/static/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="/static/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="/static/vendors/Select-1.2.2/css/select.dataTables.min.css" rel="stylesheet">
+    <link href="/static/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+
+{% load account %}
+{% user_display user as user_display %}
+
+
+
+  </head>
+
+
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+
+            <div class="clearfix"></div>
+
+            <!-- menu profile quick info -->
+            <div class="profile clearfix">
+              <div class="profile_pic">
+                <img src="/static/images/picture.jpg" alt="..." class="img-circle profile_img">
+              </div>
+              <div class="profile_info">
+                <span>欢迎光临！
+                </span>
+                <h2>{{ user_display }}</h2>
+              </div>
+            </div>
+            <!-- /menu profile quick info -->
+
+            <br />
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <h3>基本功能</h3>
+                <ul class="nav side-menu">
+                  <li><a><i class="fa fa-home"></i> 主页 <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="index.html">功能一</a></li>
+                      <li><a href="#">功能二</a></li>
+                      <li><a href="#">功能三</a></li>
+
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="menu_section">
+                <h3>其他功能</h3>
+                <ul class="nav side-menu">
+                  <li><a><i class="fa fa-bug"></i> 附加页 <span class="fa fa-chevron-down"></span></a>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+            <!-- /sidebar menu -->
+
+            <!-- /menu footer buttons -->
+            <div class="sidebar-footer hidden-small">
+              <a data-toggle="tooltip" data-placement="top" title="设置">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="全屏">
+                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="锁定">
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="退出" href="logout.html">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+              </a>
+            </div>
+            <!-- /menu footer buttons -->
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+          <div class="nav_menu">
+            <nav>
+              <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              </div>
+
+              <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <img src="/static/images/picture.jpg" alt="">{{ user_display }}
+                    <span class=" fa fa-angle-down"></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-usermenu pull-right">
+                    <li><a href="javascript:;"> 配置</a></li>
+                    <li><a href="javascript:;">帮助</a></li>
+                    <li><a href="logout.html"><i class="fa fa-sign-out pull-right"></i> 退出</a></li>
+                  </ul>
+                </li>
+
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <!-- top tiles -->
+          <!-- /top tiles -->
+
+          <br />
+
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="dashboard_graph">
+
+                <div class="row x_title">
+                  <div class="col-md-6">
+                    <h3>叉车远程监控</h3>
+                  </div>
+                  <div class="col-md-6">
+                  </div>
+                </div>
+
+                <div class="col-md-9 col-sm-9 col-xs-12  bg-white" id = "mapWrapper">
+                  <div class="x_title">
+                    <h2>叉车地图</h2>
+                    <div class="btn-group pull-right" data-toggle="buttons">
+                      <label id="option1" class="btn btn-primary active">
+                        <input type="radio" name="options"  autocomplete="off" checked> 自动刷新 
+                          <select id="heard" class="form-control" required>
+                            <option value=10>10S</option>
+                            <option value=20>20S</option>
+                            <option value=60>60S</option>
+                            <option value=120>120S</option>
+                          </select>
+                      </label>
+                      <label id="option2" class="btn btn-primary">
+                        <input type="radio" name="options"  autocomplete="off"> 手动刷新
+                      </label>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div id="map_gaode_1" class="map-placeholder"></div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12 bg-white" id = "tableWrapper">
+                  <div class="x_title">
+                    <h2>叉车列表</h2>
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                      <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                          <div class="x_content">                 
+                            <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                              <thead>
+                                <tr>
+                                  <th>叉车名</th>
+                                  <th>叉车副名</th>
+                                  <th>位置</th>
+                                  <th>经度</th>
+                                  <th>纬度</th>
+                                  <th>运行时间</th>
+                                  <th>工作时间</th>
+                                  <th>电量</th>
+                                  <th>警报</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>辽宁号</td>
+                                  <td>Nixon</td>
+                                  <td><button value = 0 type="button" class="btn btn-primary go-location">Go!</button></td>
+                                  <td>Edinburgh</td>
+                                  <td>61</td>
+                                  <td>2011/04/25</td>
+                                  <td>$320,800</td>
+                                  <td>5421</td>
+                                  <td>t.nixon@datatables.net</td>
+                                </tr>
+                                <tr>
+                                  <td>宁波号</td>
+                                  <td>Winters</td>
+                                  <td><button value = 1 type="button" class="btn btn-primary go-location">Go!</button></td>
+                                  <td>Tokyo</td>
+                                  <td>63</td>
+                                  <td>2011/07/25</td>
+                                  <td>$170,750</td>
+                                  <td>8422</td>
+                                  <td>g.winters@datatables.net</td>
+                                </tr>
+                                <tr>
+                                  <td>杭州号</td>
+                                  <td>Cox</td>
+                                  <td><button value = 2 type="button" class="btn btn-primary go-location">Go!</button></td>
+                                  <td>San Francisco</td>
+                                  <td>66</td>
+                                  <td>2009/01/12</td>
+                                  <td>$86,000</td>
+                                  <td>1562</td>
+                                  <td>a.cox@datatables.net</td>
+                                </tr>
+                                <tr>
+                                  <td>温州号</td>
+                                  <td>Kelly</td>
+                                  <td><button value = 3 type="button" class="btn btn-primary go-location">Go!</button></td>
+                                  <td>Edinburgh</td>
+                                  <td>22</td>
+                                  <td>2012/03/29</td>
+                                  <td>$433,060</td>
+                                  <td>6224</td>
+                                  <td>c.kelly@datatables.net</td>
+                                </tr>
+                                <tr>
+                                  <td>嘉兴号</td>
+                                  <td>Satou</td>
+                                  <td><button value = 4 type="button" class="btn btn-primary go-location">Go!</button></td>
+                                  <td>Tokyo</td>
+                                  <td>33</td>
+                                  <td>2008/11/28</td>
+                                  <td>$162,700</td>
+                                  <td>5407</td>
+                                  <td>a.satou@datatables.net</td>
+                                </tr>
+                                <tr>
+                                  <td>台州号</td>
+                                  <td>Williamson</td>
+                                  <td><button value = 5 type="button" class="btn btn-primary go-location">Go!</button></td>
+                                  <td>New York</td>
+                                  <td>61</td>
+                                  <td>2012/12/02</td>
+                                  <td>$372,000</td>
+                                  <td>4804</td>
+                                  <td>b.williamson@datatables.net</td>
+                                </tr>
+                                <tr>
+                                  <td>衢州号</td>
+                                  <td>Chandler</td>
+                                  <td><button value = 6 type="button" class="btn btn-primary go-location">Go!</button></td>
+                                  <td>San Francisco</td>
+                                  <td>59</td>
+                                  <td>2012/08/06</td>
+                                  <td>$137,500</td>
+                                  <td>9608</td>
+                                  <td>h.chandler@datatables.net</td>
+                                </tr>
+                                <tr>
+                                  <td>金华号</td>
+                                  <td>Davidson</td>
+                                  <td><button value = 7 type="button" class="btn btn-primary go-location">Go!</button></td>
+                                  <td>Tokyo</td>
+                                  <td>55</td>
+                                  <td>2010/10/14</td>
+                                  <td>$327,900</td>
+                                  <td>6200</td>
+                                  <td>r.davidson@datatables.net</td>
+                                </tr>
+                                <tr>
+                                  <td>慈溪1号</td>
+                                  <td>Hurst</td>
+                                  <td><button value = 8 type="button" class="btn btn-primary go-location">Go!</button></td>
+                                  <td>San Francisco</td>
+                                  <td>39</td>
+                                  <td>2009/09/15</td>
+                                  <td>$205,500</td>
+                                  <td>2360</td>
+                                  <td>c.hurst@datatables.net</td>
+                                </tr>
+                                <tr>
+                                  <td>慈溪2号</td>
+                                  <td>Frost</td>
+                                  <td><button value = 9 type="button" class="btn btn-primary go-location">Go!</button></td>
+                                  <td>Edinburgh</td>
+                                  <td>23</td>
+                                  <td>2008/12/13</td>
+                                  <td>$103,600</td>
+                                  <td>1667</td>
+                                  <td>s.frost@datatables.net</td>
+                                </tr>
+                                <tr>
+                                  <td>慈溪3号</td>
+                                  <td>Gaines</td>
+                                  <td><button value = 10 type="button" class="btn btn-primary go-location">Go!</button></td>
+                                  <td>London</td>
+                                  <td>30</td>
+                                  <td>2008/12/19</td>
+                                  <td>$90,560</td>
+                                  <td>3814</td>
+                                  <td>j.gaines@datatables.net</td>
+                                </tr>
+                                <tr value = 11>
+                                  <td value = 11>慈溪4号</td>
+                                  <td>Flynn</td>
+                                  <td><button value = 11 type="button" class="btn btn-primary go-location">Go!</button></td>
+                                  <td>Edinburgh</td>
+                                  <td>22</td>
+                                  <td>2013/03/03</td>
+                                  <td>$342,000</td>
+                                  <td>9497</td>
+                                  <td>q.flynn@datatables.net</td>
+                                </tr>
+                                <tr>
+                                  <td>慈溪5号</td>
+                                  <td>Marshall</td>
+                                  <td><button value = 12 type="button" class="btn btn-primary go-location">Go!</button></td>
+                                  <td>San Francisco</td>
+                                  <td>36</td>
+                                  <td>2008/10/16</td>
+                                  <td>$470,600</td>
+                                  <td>6741</td>
+                                  <td>c.marshall@datatables.net</td>
+                                </tr>
+                                <tr>
+                                  <td>慈溪6号</td>
+                                  <td>Kennedy</td>
+                                  <td><button value = 13 type="button" class="btn btn-primary go-location">Go!</button></td>
+                                  <td>London</td>
+                                  <td>43</td>
+                                  <td>2012/12/18</td>
+                                  <td>$313,500</td>
+                                  <td>3597</td>
+                                  <td>h.kennedy@datatables.net</td>
+                                </tr>
+                                <tr>
+                                  <td>慈溪7号</td>
+                                  <td>Fitzpatrick</td>
+                                  <td><button value = 14 type="button" class="btn btn-primary go-location">Go!</button></td>
+                                  <td>London</td>
+                                  <td>19</td>
+                                  <td>2010/03/17</td>
+                                  <td>$385,750</td>
+                                  <td>1965</td>
+                                  <td>t.fitzpatrick@datatables.net</td>
+                                </tr>
+                                <tr>
+                                  <td>慈溪8号</td>
+                                  <td>Silva</td>
+                                  <td><button value = 15 type="button" class="btn btn-primary go-location">Go!</button></td>
+                                  <td>London</td>
+                                  <td>66</td>
+                                  <td>2012/11/27</td>
+                                  <td>$198,500</td>
+                                  <td>1581</td>
+                                  <td>m.silva@datatables.net</td>
+                                </tr>
+                                <tr>
+                                  <td>慈溪9号</td>
+                                  <td>Byrd</td>
+                                  <td><button value = 16 type="button" class="btn btn-primary go-location">Go!</button></td>
+                                  <td>New York</td>
+                                  <td>64</td>
+                                  <td>2010/06/09</td>
+                                  <td>$725,000</td>
+                                  <td>3059</td>
+                                  <td>p.byrd@datatables.net</td>
+                                </tr>
+                                <tr>
+                                  <td>余姚号</td>
+                                  <td>Little</td>
+                                  <td><button value = 17 type="button" class="btn btn-primary go-location">Go!</button></td>
+                                  <td>New York</td>
+                                  <td>59</td>
+                                  <td>2009/04/10</td>
+                                  <td>$237,500</td>
+                                  <td>1721</td>
+                                  <td>g.little@datatables.net</td>
+                                </tr>
+                                <tr>
+                                  <td>奉化号</td>
+                                  <td>Greer</td>
+                                  <td><button value = 18 type="button" class="btn btn-primary go-location">Go!</button></td>
+                                  <td>London</td>
+                                  <td>41</td>
+                                  <td>2012/10/13</td>
+                                  <td>$132,000</td>
+                                  <td>2558</td>
+                                  <td>b.greer@datatables.net</td>
+                                </tr>
+                                <tr>
+                                  <td>海曙号</td>
+                                  <td>Rios</td>
+                                  <td><button value = 19 type="button" class="btn btn-primary go-location">Go!</button></td>
+                                  <td>Edinburgh</td>
+                                  <td>35</td>
+                                  <td>2012/09/26</td>
+                                  <td>$217,500</td>
+                                  <td>2290</td>
+                                  <td>d.rios@datatables.net</td>
+                                </tr>
+                                <tr>
+                                  <td>镇海号</td>
+                                  <td>Caldwell</td>
+                                  <td><button value = 20 type="button" class="btn btn-primary go-location">Go!</button></td>
+                                  <td>New York</td>
+                                  <td>30</td>
+                                  <td>2011/09/03</td>
+                                  <td>$345,000</td>
+                                  <td>1937</td>
+                                  <td>j.caldwell@datatables.net</td>
+                                </tr>
+                                <tr>
+                                  <td>北仑号</td>
+                                  <td>Berry</td>
+                                  <td><button value = 21 type="button" class="btn btn-primary go-location">Go!</button></td>
+                                  <td>New York</td>
+                                  <td>40</td>
+                                  <td>2009/06/25</td>
+                                  <td>$675,000</td>
+                                  <td>6154</td>
+                                  <td>y.berry@datatables.net</td>
+                                </tr>
+                                <tr>
+                                  <td>小港号</td>
+                                  <td>Vance</td>
+                                  <td><button value = 22 type="button" class="btn btn-primary go-location">Go!</button></td>
+                                  <td>New York</td>
+                                  <td>21</td>
+                                  <td>2011/12/12</td>
+                                  <td>$106,450</td>
+                                  <td>8330</td>
+                                  <td>c.vance@datatables.net</td>
+                                </tr>
+                                <tr>
+                                  <td>红联号</td>
+                                  <td>Wilder</td>
+                                  <td><button value = 23 type="button" class="btn btn-primary go-location">Go!</button></td>
+                                  <td>Sidney</td>
+                                  <td>23</td>
+                                  <td>2010/09/20</td>
+                                  <td>$85,600</td>
+                                  <td>3023</td>
+                                  <td>d.wilder@datatables.net</td>
+                                </tr>
+                                <tr>
+                                  <td>海天2号</td>
+                                  <td>Ramos</td>
+                                  <td><button value = 24 type="button" class="btn btn-primary go-location">Go!</button></td>
+                                  <td>London</td>
+                                  <td>47</td>
+                                  <td>2009/10/09</td>
+                                  <td>$1,200,000</td>
+                                  <td>5797</td>
+                                  <td>a.ramos@datatables.net</td>
+                                </tr>
+                                <tr>
+                                  <td>海天1号</td>
+                                  <td>Joyce</td>
+                                  <td><button value = 25 type="button" class="btn btn-primary go-location">Go!</button></td>
+                                  <td>Edinburgh</td>
+                                  <td>42</td>
+                                  <td>2010/12/22</td>
+                                  <td>$92,575</td>
+                                  <td>8822</td>
+                                  <td>g.joyce@datatables.net</td>
+                                </tr>
+                                <tr>
+                                  <td>海天3号</td>
+                                  <td>Chang</td>
+                                  <td><button value = 26 type="button" class="btn btn-primary go-location">Go!</button></td>
+                                  <td>Singapore</td>
+                                  <td>28</td>
+                                  <td>2010/11/14</td>
+                                  <td>$357,650</td>
+                                  <td>9239</td>
+                                  <td>j.chang@datatables.net</td>
+                                </tr>
+                                <tr>
+                                  <td>海天4号</td>
+                                  <td>Wagner</td>
+                                  <td><button value = 27 type="button" class="btn btn-primary go-location">Go!</button></td>
+                                  <td>San Francisco</td>
+                                  <td>28</td>
+                                  <td>2011/06/07</td>
+                                  <td>$206,850</td>
+                                  <td>1314</td>
+                                  <td>b.wagner@datatables.net</td>
+                                </tr>
+         
+                                <tr>
+                                  <td>海天5号</td>
+                                  <td>Greer</td>
+                                  <td><button value = 28 type="button" class="btn btn-primary go-location">Go!</button></td>
+                                  <td>London</td>
+                                  <td>21</td>
+                                  <td>2009/02/27</td>
+                                  <td>$103,500</td>
+                                  <td>6733</td>
+                                  <td>l.greer@datatables.net</td>
+                                </tr>
+                                <tr>
+                                  <td>海天6号</td>
+                                  <td>Alexander</td>
+                                  <td><button value = 29 type="button" class="btn btn-primary go-location">Go!</button></td>
+                                  <td>San Francisco</td>
+                                  <td>30</td>
+                                  <td>2010/07/14</td>
+                                  <td>$86,500</td>
+                                  <td>8196</td>
+                                  <td>j.alexander@datatables.net</td>
+                                </tr>
+                                <tr>
+                                  <td>驱动号</td>
+                                  <td>Decker</td>
+                                  <td><button value = 30 type="button" class="btn btn-primary go-location">Go!</button></td>
+                                  <td>Edinburgh</td>
+                                  <td>51</td>
+                                  <td>2008/11/13</td>
+                                  <td>$183,000</td>
+                                  <td>6373</td>
+                                  <td>s.decker@datatables.net</td>
+                                </tr>
+                                <tr>
+                                  <td>法拉克号</td>
+                                  <td>Bruce</td>
+                                  <td><button value = 31 type="button" class="btn btn-primary go-location">Go!</button></td>
+                                  <td>Singapore</td>
+                                  <td>29</td>
+                                  <td>2011/06/27</td>
+                                  <td>$183,000</td>
+                                  <td>5384</td>
+                                  <td>m.bruce@datatables.net</td>
+                                </tr>
+                                <tr>
+                                  <td>傅立叶号</td>
+                                  <td>Snider</td>
+                                  <td><button value = 32 type="button" class="btn btn-primary go-location">Go!</button></td>
+                                  <td>New York</td>
+                                  <td>27</td>
+                                  <td>2011/01/25</td>
+                                  <td>$112,000</td>
+                                  <td>4226</td>
+                                  <td>d.snider@datatables.net</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                  
+                  
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+
+                </div>
+
+                <div class="clearfix"></div>
+              </div>
+            </div>
+
+          </div>
+          <br />
+
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+          <div>
+            <div class="pull-right">
+               <a href="https://colorlib.com">宁波海迈克动力科技有限公司</a>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="exampleModalLabel">请输入密码</h4>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="recipient-name" class="control-label">密码:</label>
+                <input type="password" class="form-control" id="recipient-name">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary">确认</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <!-- jQuery -->
+    <script src="/static/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="/static/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="/static/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="/static/vendors/nprogress/nprogress.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="/static/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="/static/build/js/custom.js"></script>
+
+    <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=cd3dce5601d8925f2f8ad745b82fb8d8"></script>
+    <script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
+
+<!--地图CSS信息-->
+<style type="text/css">
+    body {
+        font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC","Hiragino Sans GB","Heiti SC","Microsoft YaHei",sans-serif;
+    }
+
+    .map-placeholder {
+        height: 720px;
+    }
+    .favicon-img{
+      background-color: white;
+      border-radius: 50%;
+      border: 1px solid rgba(52, 73, 94, 0.44);
+      padding: 1px;
+    }
+
+    .site_title1 i {
+      border: 0px solid #EAEAEA;
+      padding: 0px 0px;
+      border-radius: 50%;
+      font-size: 44px;
+    }
+
+
+    .info {
+        border: solid 1px silver;
+    }
+    div.info-top {
+        position: relative;
+        background: none repeat scroll 0 0 #337ab7;
+        border-bottom: 1px solid #CCC;
+        border-radius: 0px 0px 0 0;
+    }
+    div.info-top div {
+        display: inline-block;
+        color: #fff;
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 31px;
+        padding: 0 10px;
+        margin-right: 20px;
+    }
+    div.info-top img {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        transition-duration: 0.25s;
+    }
+    div.info-top img:hover {
+        box-shadow: 0px 0px 5px #000;
+    }
+    div.info-middle {
+        font-size: 12px;
+        padding: 6px;
+        line-height: 20px;
+        border-bottom: 1px solid #CCC;
+        background-color: white;
+    }
+
+    div.info-middle3 {
+        padding: 6px;
+        line-height: 20px;
+        border-bottom: 0px solid #CCC;
+        background-color: white;
+    }
+    .info-middle3 .middle3-electro{
+
+      width: 66%;
+    }
+    .info-middle3 .middle3-center{
+      margin: 0px 0;
+      height: 10px;
+      border-radius: 2px 2px;
+    }
+    .widget_summary .w_right span {
+        font-size: 18px;
+    }
+
+    .widget_summary .w_left span {
+        font-size: 18px;
+    }
+
+    .bg-electro {
+        background: #337ab7 !important;
+        border: 1px solid #337ab7 !important;
+        color: #fff;
+    }
+
+    .info-middle4 {
+
+        width: 100%;
+        padding: 6px
+        display: inline-block;
+        background-color: white;
+        border: 0px solid #E6E9ED;
+        -webkit-column-break-inside: avoid;
+        -moz-column-break-inside: avoid;
+        column-break-inside: avoid;
+    }
+    .middle4-alert {
+        padding: 8px 35px;
+        color: #F00;
+        background-color: #fff;
+        border-color: rgba(243, 156, 18, 0.88);
+        border-top: 1px solid #CCC;
+    }
+
+    .table-middle5 {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 0px;
+        background-color: white;
+
+    }
+
+    .glyphicon {
+        position: relative;
+        top: 1px;
+        display: inline-block;
+        font-family: 'Glyphicons Halflings';
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+
+    }
+
+    .top-remove {
+        color: #fff;
+        background-color: #337ab7;
+        padding-top: 10px;
+        padding-right: 10px;
+        padding-bottom: 9px;
+    }
+
+    .top-flash {
+        color: #fff;
+        background-color: #1ABB9C;
+        padding-top: 7px;
+        padding-right: 2px;
+        padding-bottom: 6px;
+        padding-left: 2px;
+        margin-left:6px;
+        margin-top:3px;
+    }
+
+    .runtime{
+      padding-left: 13px !important;
+    }
+    .worktime{
+      padding-left: 13px !important;
+    }
+
+    .middle-alert{
+        color: #F00;
+    }
+
+
+    div.info-bottom {
+        height: 0px;
+        width: 100%;
+        clear: both;
+        text-align: center;
+    }
+    div.info-bottom img {
+        position: relative;
+        z-index: 104;
+    }
+    span {
+        margin-left: 5px;
+        font-size: 11px;
+    }
+    .info-middle img {
+        float: left;
+        margin-right: 6px;
+    }
+    #map_gaode_1 {
+      border: 1px solid #CCC;
+    }
+
+    #mapWrapper{
+      border-right: 0px solid #E6E9ED !important;
+    }
+    #tableWrapper{
+      border-left: 0px solid #E6E9ED !important;
+    }
+
+    footer {
+      padding-bottom: 3px;
+      padding-top:8px;
+      height: 40px;
+    }
+
+    footer>div {
+      height: 20px;
+      margin-bottom: 3px;
+      margin-top:3px;
+      text-align:right;
+    }
+    footer>div .clearfix {
+      height: 0px;
+      font-size: 0px
+    }
+    .pull-right {
+     
+    }
+    .sidebar-footer {
+
+    }
+
+    .x_title h2 {
+        margin: 5px 0 11px;
+        width: 50%;
+    }
+    #heard {
+        display: inline;
+        width: 80px;
+        padding: 0px 10px;
+        height: 20px;
+    }
+
+    .go-location{
+      padding: 1px 3px;
+      margin-bottom: 0px;
+    }
+
+    .w_15 {
+      width: 15%
+    } 
+    .w_85 {
+      width: 85%
+    } 
+    .w_5 {
+      width: 5%
+    }
+
+    #operation-button1 {
+      margin: 6px 12px;
+      padding: 3px 12px;
+    }
+
+    #operation-button2 {
+      margin: 6px 12px;
+      padding: 3px 12px;
+    }
+
+    #operation-div {
+      background-color: #fff;
+      border-top: 1px solid #CCC;
+    }
+</style>
+
+
+<!--系统列表-->
+<script src="/static/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/static/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="/static/vendors/Select-1.2.2/js/dataTables.select.min.js"></script>
+<script src="/static/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+
+
+<script src="/static/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="/static/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+
+
+
+<style type="text/css">
+    #searchTable {
+      position: relative;
+
+    } 
+    #searchTable div{
+      float: left;
+    } 
+    #searchTable div input{
+      width: 100%;
+    }
+</style>
+<script>
+//不能在初始化之后设置，否则会报错
+//$(document).ready(function() {
+  var data_table = $('#datatable-responsive').DataTable( {
+    "language": {
+          "decimal":        "",
+          "emptyTable":     "没有叉车",
+          "info":           "从 _START_ 到 _END_ 号",
+          "infoEmpty":      "Showing 0 to 0 of 0 entries",
+          "infoFiltered":   "(filtered from _MAX_ total entries)",
+          "infoPostFix":    "",
+          "thousands":      ",",
+          "lengthMenu":     "",
+          "loadingRecords": "Loading...",
+          "processing":     "Processing...",
+          "search":         "搜索:",
+          "zeroRecords":    "没有匹配的结果",
+          "paginate": {
+              "first":      "首页",
+              "last":       "末页",
+              "next":       "下一页",
+              "previous":   "上一页"
+          },
+          "aria": {
+              "sortAscending":  ": activate to sort column ascending",
+              "sortDescending": ": activate to sort column descending"
+          }
+      },
+      "dom": '<"#searchTable"f>rtp',
+      "scrollY": "570px",
+
+      //"scroller": true,
+    
+  });
+//});
+//$('#datatable-responsive').DataTable();
+</script>
+
+<!--地图绘制-->
+<script>
+
+  //var markerInsider;
+  var i;
+  
+  var map = new AMap.Map("map_gaode_1", {
+        resizeEnable: true,
+        center: [116.397428, 39.90923],
+        zoom: 17
+  });
+
+//定时刷新
+  var markerArray = [];
+  function MapTask(){
+    var row_data;
+    map.clearMap( );
+    markerArray = [];
+    for(i = 1; i<34; i++){
+      row_data = data_table.row(i-1).data();
+      if(row_data){
+        var markerInsider = new AMap.Marker({
+          map: map,
+          //position: [116.397428+Math.random()*i, 39.90923+Math.random()*i],
+          position: [Number(row_data[3]), Number(row_data[4])],
+          icon: "http://webapi.amap.com/images/car.png",
+          offset: new AMap.Pixel(-26, -13),
+          autoRotation: true
+        });
+        markerArray.push(markerInsider);
+        markerInsider.on('click',function(){
+          text_offset = this.text;
+          var titleIn;
+          var title_data = '';
+          var marker_index = -1;
+          if(data_table.row(text_offset-1).data()!=undefined){
+            title_data = data_table.row(text_offset-1).data()[0];
+            titleIn = title_data+'叉车信息<span style="font-size:11px;color:#F00;">正在运行中</span>'
+          }
+          else{
+            titleIn = text_offset+'号叉车信息<span style="font-size:11px;color:#F00;">正在运行中</span>';
+          }   
+          var infoWindowInsider = new AMap.InfoWindow({
+            isCustom:true,//使用自定义窗体
+            content:createInfoWindow(titleIn,text_offset-1),
+            offset:new AMap.Pixel(16, -35)
+          });       
+          infoWindowInsider.open(map, this.marker.getPosition());
+
+          //高亮选中的表格中的点，并跳转
+          marker_index = data_table.column(0).data().indexOf(title_data);
+          data_table.page(Math.floor(marker_index/10)).draw('page');
+          data_table.rows().deselect();
+          data_table.row(text_offset-1).select();
+
+
+
+        },{marker:markerInsider,text:i});
+      }
+    }
+  }
+
+  function OperateAjax(){
+    $.getJSON("{% url 'ajax-list' %}",function(ret){
+      //返回值 ret 在这里是一个列表
+      var row_data;
+      for (var i = 0; i < ret.length; i++) {
+        // 把 ret 的每一项显示在网页上
+        row_data = data_table.row(i).data();
+        if(row_data){
+          row_data[3] = String(ret[i][0]);
+          row_data[4] = String(ret[i][1]);
+          row_data[5] = ret[i][2];
+          row_data[6] = ret[i][3];
+          row_data[7] = ret[i][4];
+          row_data[8] = ret[i][5];
+        }
+      }
+      data_table.draw('page');
+      MapTask();
+    })
+  }
+
+  OperateAjax();
+
+  var timer_map = setInterval(OperateAjax,10000);
+  function flashMap(e){
+    clearInterval(timer_map);
+    if(e.data.value){
+
+      timer_map = setInterval(OperateAjax,$("#heard")[0].value*1000);
+    }
+    else{
+      OperateAjax();
+    }
+  }
+  $("#option2").on('click',{"value":0},flashMap);
+  $("#option1").on('click',{"value":10000},flashMap);
+  $("tbody ").on('click','.go-location',function(e){
+    //计算offset
+    var offset = Number(e.target.value);
+    var titleIn = data_table.row(offset).data()[0]+'叉车信息<span style="font-size:11px;color:#F00;">正在运行中</span>';
+    if(markerArray[offset]){  
+      var infoWindowInsider = new AMap.InfoWindow({
+        isCustom:true,//使用自定义窗体
+        content:createInfoWindow(titleIn,offset),
+        offset:new AMap.Pixel(16, -35)
+      });       
+      infoWindowInsider.open(map, markerArray[offset].getPosition());
+    }
+
+    //高亮表格中的点
+    data_table.rows().deselect();
+    data_table.row(offset).select();
+
+  });
+
+  //构建自定义信息窗体
+  function createInfoWindow(title, index){
+    var info = $('<div />',{
+                  'class':'info',
+                });
+    var top = $('<div/>',{
+      'class':'info-top',        
+    });
+    var titleD = $('<div/>',{
+      html:title,
+    });
+    var closeX = $('<i class="glyphicon glyphicon-remove top-remove" aria-hidden="true"></i>').click(closeInfoWindow);
+
+    top.append(titleD);
+    top.append(closeX);
+    info.append(top);
+
+    var row_data = data_table.row(index).data();
+    //row_data[5]row_data[6]row_data[7]row_data[8]
+
+    var middle3 = $('<div class="widget_summary info-middle3">\
+                      <div class="w_left w_15">\
+                        <i  class="glyphicon glyphicon-flash top-flash" aria-hidden="true"></i>\
+                      </div>\
+                      <div class="w_center w_85">\
+                        <div class = "middle3-word">电量<span class = "right">63%</span>\</div>\
+                        <div class="progress  middle3-center">\
+                          <div class="progress-bar bg-electro middle3-electro" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width :99%">\
+                            <span class="sr-only">60% Complete</span>\
+                          </div>\
+                        </div>\
+                      </div>\
+                      <div class="clearfix"></div>\
+                    </div>'.replace('63%',row_data[7]).replace('99%',row_data[7]));
+    info.append(middle3);
+
+    var middle4 = $('<div class="info-middle4">\
+                  <div class="alert-warning middle4-alert fade in" role="alert">\
+                    <i  class="glyphicon glyphicon-alert middle-alert" aria-hidden="true"></i>\
+                    <strong>报警!</strong> ABCD\
+                  </div>\
+                </div>'.replace('ABCD',row_data[8]));
+  
+
+    var middle5 = $('<div class="">\
+      <table class= "table table-middle5">\
+      <tbody>\
+        <tr class="">\
+          <td class="runtime">运行时间</td>\
+          <td class="">1x</td>\
+        </tr>\
+        <tr class="">\
+          <td class="worktime">工作时间</td>\
+          <td class="">2x</td>\
+        </tr>\
+      </tbody>\
+      </table>\
+      </div>'.replace('1x',row_data[5]).replace('2x',row_data[6]));
+
+
+    //info.append(middle5);
+    //info.append(middle4);      
+
+    var middle6 = $('<div id="operation-div"><button id="operation-button1" type="button" class="btn btn-primary" \
+      data-toggle="modal" data-target="#exampleModal" >操作1</button>\
+      <button id="operation-button2" type="button" class="btn btn-primary" \
+      data-toggle="modal" data-target="#exampleModal" >操作2</button>\
+      </div>');
+
+
+    info.append(middle6);
+    info.append(middle5);
+    info.append(middle4);  
+
+
+    var bottom = $('<div/>',{
+      'class':'info-bottom',
+    }).css({
+      'position':'relative',
+      'top':'0px',
+      'margin':'0 auto'
+    });
+    var sharp = $('<img/>',{
+      'src':'http://webapi.amap.com/images/sharp.png',
+    });
+
+    bottom.append(sharp);
+    info.append(bottom);
+    return info[0];
+
+
+
+  }
+
+  //关闭信息窗体
+  function closeInfoWindow(){
+    map.clearInfoWindow();
+  }
+  map.setFitView();
+
+</script>
+
+
+<!--绘制波形图-->
+<!--
+<script type="text/javascript">
+  function gd(year, month, day) {
+    return new Date(year, month - 1, day).getTime();
+  }
+
+
+  function init_flot_chart(){
+    
+    if( typeof ($.plot) === 'undefined'){ return; }
+    
+    console.log('init_flot_chart');
+    
+    var data1_list = {{ data1_list|safe }};
+    var data2_list = {{ data2_list|safe }};
+    var value1_lsit = {{ value1_list|safe }};
+    //var value2_list = {{ value2_list|safe }};
+    var arr_data1 = [];
+    var arr_data2 = [];
+    for (var i = 0; i < data1_list.length; i++) {
+      arr_data1.push([gd((data1_list[i][0]), (data1_list[i][1]), (data1_list[i][2])), (data1_list[i][3])]);
+    }
+    for (var i = 0; i < data2_list.length; i++) {
+      arr_data2.push([gd((data2_list[i][0]), (data2_list[i][1]), (data2_list[i][2])), (data2_list[i][3])]);
+    }
+    
+
+
+    var chart_plot_01_settings = {{ chart_plot_01_settings|safe }};
+    
+  
+
+        
+    
+    if ($("#my_chart_plot_01").length){
+      console.log('Plot1');
+      
+      $.plot( $("#my_chart_plot_01"), [ arr_data1, arr_data2 ],  chart_plot_01_settings );
+    }
+    
+    
+    
+  }
+  init_flot_chart(); 
+</script>
+-->
+
+  </body>
+</html>

@@ -1,0 +1,61 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+{% block commonuse%}
+{% endblock %}
+{% block content %}
+      <div class="login_wrapper">
+        <div class="animate form login_form">
+          <section class="login_content">
+            <form  class="login" method="POST" action="{% url 'account_login' %}">
+              <h1>登入</h1>
+              {% csrf_token %}
+
+                <div  class="custom-form-control">                                        
+                  <input autofocus="autofocus" id="id_login" maxlength="150" name="login" placeholder="Username" type="text" required />
+                </div>
+              
+                <div  class="custom-form-control">                      
+                  <input id="id_password" name="password" placeholder="Password" type="password" required />
+                </div>
+              
+                <div  class="checkbox">  
+                  <label>
+                    <input id="id_remember" name="remember" type="checkbox" > 记住我
+                  </label>                                                    
+                </div>
+
+
+              {% if redirect_field_value %}
+              <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+              {% endif %}
+              <div>
+                 <button type="submit" class="btn btn-default submit" href="index.html">Log in</button>
+                <a class="reset_pass" href="{% url 'account_reset_password' %}">Lost your password?</a>
+              </div>
+
+              <div class="clearfix"></div>
+
+              <div class="separator">
+                <p class="change_link">New to site?
+                  <a href="{{ signup_url }}" class="to_register"> Create Account </a>
+                </p>
+
+                <div class="clearfix"></div>
+                <br />
+
+                <div>
+                  <h1><i class="fa fa-paw"></i> 海迈克动力科技!</h1>
+                  <p>©2017 All Rights Reserved. 海迈克动力科技有限公司</p>
+                </div>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+
+
+{% endblock %}
